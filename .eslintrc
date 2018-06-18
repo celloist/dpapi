@@ -1,0 +1,13 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard"
+  ],
+  "rules": {
+    "no-warning-comments": [0]
+  },
+  "env": {
+    "jest": true,
+    "jasmine": true
+  }
+}

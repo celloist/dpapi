@@ -1,0 +1,68 @@
+{
+  "test": "test",
+  "product": {
+    "name": "test",
+    "description": "test",
+    "price": "test",
+    "sellerPrice": 3,
+    "shippingPrice": 3,
+    "category": "categoryId",
+    "stock": "test",
+    "images": [
+      {
+        "url": "someurl",
+        "name": "somename",
+        "order": 1
+      }
+    ],
+    "sourceInfo": {
+      "seller": "testseller",
+      "sourceId": "sourceName",
+      "name": "name",
+      "sourceStock": 10
+    },
+    "reviewScore": "Number"
+  },
+  "seller": {
+    "email": "testmail@mail.m",
+    "name": "test",
+    "test": "testlocation",
+    "platform": "AliExpress",
+    "storeId": "test",
+    "category": [
+      "test1",
+      "test2"
+    ],
+    "values": {
+      "method": [
+        "WhatsApp",
+        "WeChat"
+      ],
+      "preferred": "WeChat"
+    }
+  },
+  "category": {
+    "name": "test",
+    "description": "description"
+  },
+  "enums": [
+    {
+      "name": "platform",
+      "values": [
+        "AliExpress",
+        "DHGate",
+        "AliBaba"
+      ]
+    },
+    {
+      "name": "communication",
+      "values": [
+        "WhatsApp",
+        "WeChat",
+        "Telegram",
+        "Email"
+      ]}
+  ]
+
+}
+
