@@ -20,7 +20,7 @@ beforeEach(async () => {
 test('POST /products 201 (admin)', async () => {
   const { status, body } = await request(app())
     .post(`${apiRoot}`)
-    .send({ access_token: adminSession, name: 'test', description: 'test', sellerPrice: 'test', shippingPrice: 'test', category: 'test', stock: 'test', imageUrls: 'test', timestamps: 'test', sourceInfo: 'test', : 'test' })
+    .send({ access_token: adminSession, name: 'test', description: 'test', sellerPrice: 'test', shippingPrice: 'test', category: 'test', stock: 'test', imageUrls: 'test', timestamps: 'test', sourceInfo: 'test' })
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
   expect(body.name).toEqual('test')
@@ -32,7 +32,6 @@ test('POST /products 201 (admin)', async () => {
   expect(body.imageUrls).toEqual('test')
   expect(body.timestamps).toEqual('test')
   expect(body.sourceInfo).toEqual('test')
-  expect(body.).toEqual('test')
 })
 
 test('POST /products 401 (user)', async () => {
@@ -72,7 +71,7 @@ test('GET /products/:id 404', async () => {
 test('PUT /products/:id 200 (admin)', async () => {
   const { status, body } = await request(app())
     .put(`${apiRoot}/${product.id}`)
-    .send({ access_token: adminSession, name: 'test', description: 'test', sellerPrice: 'test', shippingPrice: 'test', category: 'test', stock: 'test', imageUrls: 'test', timestamps: 'test', sourceInfo: 'test', : 'test' })
+    .send({ access_token: adminSession, name: 'test', description: 'test', sellerPrice: 'test', shippingPrice: 'test', category: 'test', stock: 'test', imageUrls: 'test', timestamps: 'test', sourceInfo: 'test'})
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
   expect(body.id).toEqual(product.id)
@@ -85,7 +84,6 @@ test('PUT /products/:id 200 (admin)', async () => {
   expect(body.imageUrls).toEqual('test')
   expect(body.timestamps).toEqual('test')
   expect(body.sourceInfo).toEqual('test')
-  expect(body.).toEqual('test')
 })
 
 test('PUT /products/:id 401 (user)', async () => {
@@ -104,7 +102,7 @@ test('PUT /products/:id 401', async () => {
 test('PUT /products/:id 404 (admin)', async () => {
   const { status } = await request(app())
     .put(apiRoot + '/123456789098765432123456')
-    .send({ access_token: adminSession, name: 'test', description: 'test', sellerPrice: 'test', shippingPrice: 'test', category: 'test', stock: 'test', imageUrls: 'test', timestamps: 'test', sourceInfo: 'test', : 'test' })
+    .send({ access_token: adminSession, name: 'test', description: 'test', sellerPrice: 'test', shippingPrice: 'test', category: 'test', stock: 'test', imageUrls: 'test', timestamps: 'test', sourceInfo: 'test'})
   expect(status).toBe(404)
 })
 

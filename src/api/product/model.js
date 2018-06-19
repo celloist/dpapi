@@ -17,9 +17,9 @@ const productSchema = new Schema({
   shippingPrice: {
     type: Number
   },
-  category: {
-    type: Schema.Types.ObjectId, ref: 'Category'
-  },
+  category: [{
+    type: String
+  }],
   stock: {
     type: Number, default: 5
   },
@@ -44,10 +44,10 @@ const productSchema = new Schema({
   }
 }, {
   timestamps: true,
-  toJSON: {
-    virtuals: true,
-    transform: (obj, ret) => { delete ret._id }
-  }
+  // toJSON: {
+  //   virtuals: true,
+  //   transform: (obj, ret) => { delete ret._id }
+  // }
 })
 
 productSchema.methods = {

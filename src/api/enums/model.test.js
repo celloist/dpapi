@@ -3,7 +3,7 @@ import { Enums } from '.'
 let enums
 
 beforeEach(async () => {
-  enums = await Enums.create({ name: 'test', values: 'test' })
+  enums = await Enums.create({ name: 'test', values: ['test'] })
 })
 
 describe('view', () => {

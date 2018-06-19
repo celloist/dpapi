@@ -32,8 +32,9 @@ const { name, description, sellerPrice, shippingPrice, category, stock, imageUrl
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ name, description, sellerPrice, shippingPrice, category, stock, imageUrls, timestamps, sourceInfo }),
-  create)
+   body({name, description, sellerPrice, shippingPrice, category, stock, imageUrls, timestamps, sourceInfo}),
+  create
+)
 
 /**
  * @api {get} /products Retrieve products

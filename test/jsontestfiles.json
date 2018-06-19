@@ -3,25 +3,25 @@
   "product": {
     "name": "test",
     "description": "test",
-    "price": "test",
+    "price": 4,
     "sellerPrice": 3,
     "shippingPrice": 3,
-    "category": "categoryId",
-    "stock": "test",
-    "images": [
-      {
-        "url": "someurl",
-        "name": "somename",
-        "order": 1
-      }
+    "category": [
+      "test1",
+      "test2"
     ],
+    "stock": 5,
+    "images": [{
+      "url": "someurl",
+      "name": "somename",
+      "order": 1
+    }],
     "sourceInfo": {
-      "seller": "testseller",
-      "sourceId": "sourceName",
-      "name": "name",
-      "sourceStock": 10
-    },
-    "reviewScore": "Number"
+      "source": "sourceName",
+      "sellerName": "test",
+      "sourceStock": 10,
+      "reviewScore": 10
+    }
   },
   "seller": {
     "email": "testmail@mail.m",
