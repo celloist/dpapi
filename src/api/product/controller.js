@@ -1,7 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { Product } from '.'
 
-export const create = ( {body} , res, next) => {
+export const create = ( { bodymen: { body }} , res, next) => {
   Product.create(body)
     .then((product) => product.view(true))
     .then(success(res, 201))

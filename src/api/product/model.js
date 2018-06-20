@@ -61,7 +61,7 @@ productSchema.methods = {
       shippingPrice: this.shippingPrice,
       category: this.category,
       stock: this.stock,
-      imageUrls: this.imageUrls,
+      images: this.images,
       timestamps: this.timestamps,
       sourceInfo: this.sourceInfo
     }
