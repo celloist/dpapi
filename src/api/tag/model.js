@@ -9,9 +9,8 @@ const tagSchema = new Schema({
   description: {
     type: String
   },
-  category: [ {
-    id: {type: Schema.Types.ObjectId, ref: 'Category'},
-    name: String
+  categories: [ {
+    type: String
   }]
 }, {
   timestamps: true,
@@ -28,7 +27,7 @@ tagSchema.methods = {
       id: this.id,
       name: this.name,
       description: this.description,
-      category: this.category,
+      categories: this.categories,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

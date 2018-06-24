@@ -26,20 +26,34 @@
   "seller": {
     "email": "testmail@mail.m",
     "name": "test",
-    "test": "testlocation",
+    "location": "testlocation",
     "platform": "AliExpress",
+    "address": {
+      "street": "test",
+      "number": "324",
+      "zip": "2342",
+      "province": "test",
+      "country": "test"
+    },
     "storeId": "test",
-    "category": [
+    "categories": [
       "test1",
       "test2"
     ],
-    "values": {
-      "method": [
-        "WhatsApp",
-        "WeChat"
-      ],
-      "preferred": "WeChat"
-    }
+    "communication":
+    [
+      {
+        "method": "test",
+        "contactName":"test",
+        "contactInfo": "test"
+      },
+      {
+        "method": "test",
+        "contactName":"test",
+        "contactInfo": "test"
+      }
+    ]
+
   },
   "category": {
     "name": "test",
@@ -62,7 +76,22 @@
         "Telegram",
         "Email"
       ]}
-  ]
-
+  ],
+  "tags": {
+    "name": "testname1",
+    "description": "test2",
+    "categories": ["test","test2"]
+  },
+  "user": {
+  "email": "somemail@mail.me",
+  "password": "test",
+  "name": "mc doe",
+  "address": {
+    "street": "streert",
+    "number": "23423d",
+    "zip": "sdfsdfsd",
+    "country": "Allahu Ackbarland"
+  }
+  }
 }
 

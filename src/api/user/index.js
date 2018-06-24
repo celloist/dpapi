@@ -2,12 +2,12 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { index, showMe, show, create,createUser, update, updatePassword, destroy } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
 const router = new Router()
-const { email, password, name, role } = schema.tree
+const { email, password, name, role, newsletter } = schema.tree
 
 /**
  * @api {get} /users Retrieve users
@@ -37,15 +37,17 @@ router.get('/me',
   token({ required: true }),
   showMe)
 
+
 /**
  * @api {get} /users/:id Retrieve user
  * @apiName RetrieveUser
  * @apiGroup User
- * @apiPermission public
+ * @apiPermission admin
  * @apiSuccess {Object} user User's data.
  * @apiError 404 User not found.
  */
 router.get('/:id',
+  token({ required: true, roles: ['admin'] }),
   show)
 
 /**
@@ -65,8 +67,25 @@ router.get('/:id',
  */
 router.post('/',
   master(),
-  body({ email, password, name, role }),
+  body({ email, password, name, role,address:[Object],newsletter }),
   create)
+
+/**
+ * @api {post} /users/newuser Create user
+ * @apiName CreateUser
+ * @apiGroup User
+ * @apiPermission public
+ * @apiParam {String} email User's email.
+ * @apiParam {String{6..}} password User's password.
+ * @apiParam {String} [name] User's name.
+ * @apiParam  [role=user] User's role.
+ * @apiSuccess (Success 201) {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 409 Email already registered.
+ */
+router.post('/newuser',
+  body({ email, password, name,address:[Object],newsletter }),
+  createUser)
 
 /**
  * @api {put} /users/:id Update user
@@ -81,8 +100,8 @@ router.post('/',
  * @apiError 404 User not found.
  */
 router.put('/:id',
-  token({ required: true }),
-  body({ name }),
+ token({ required: true }),
+  body({ name,address: [Object],newsletter  }),
   update)
 
 /**

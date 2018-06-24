@@ -1,11 +1,12 @@
 import { success, notFound } from '../../services/response/'
 import { Enums } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) => {
   Enums.create(body)
     .then((enums) => enums.view(true))
     .then(success(res, 201))
     .catch(next)
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Enums.find(query, select, cursor)

@@ -3,8 +3,8 @@ import mongoose, { Schema } from 'mongoose'
 const enumsSchema = new Schema({
   name: String,
   values: [{
-    name: String
-  }]
+    type: String
+  }],
 }, {
   timestamps: true,
   toJSON: {
@@ -19,6 +19,7 @@ enumsSchema.methods = {
       // simple view
       id: this.id,
       name: this.name,
+      values: this.values,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

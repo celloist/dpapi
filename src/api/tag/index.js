@@ -7,7 +7,7 @@ import { schema } from './model'
 export Tag, { schema } from './model'
 
 const router = new Router()
-const { name, description, category } = schema.tree
+const { name, description, categories } = schema.tree
 
 /**
  * @api {post} /tags Create tag
@@ -25,7 +25,7 @@ const { name, description, category } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ name, description, category }),
+  body({ name, description, categories }),
   create)
 
 /**
@@ -68,7 +68,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ name, description, category }),
+  body({ name, description, categories }),
   update)
 
 /**

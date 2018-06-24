@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
 import { env } from '../../config'
 
-const roles = ['user', 'admin']
+const roles = ['user', 'admin','mod'];
 
 const userSchema = new Schema({
   email: {
@@ -40,6 +40,10 @@ const userSchema = new Schema({
       type: String,
       required: true
     }
+  },
+  newsletter: {
+    type: Boolean,
+    default: false
   },
   role: {
     type: String,
@@ -81,18 +85,11 @@ userSchema.methods = {
     let fields = ['id', 'name']
 
     if (full) {
-      fields = [...fields, 'email', 'createdAt']
+      fields = [...fields, 'email','address','newsletter','role', 'createdAt']
     }
 
     fields.forEach((field) => { view[field] = this[field] })
 
-    return view
-  },
-  invoiceView (full) { // TODO
-    let view = {}
-    let fields = ['id', 'name']
-
-    fields.forEach((field) => { view[field] = this[field] })
     return view
   },
   authenticate (password) {

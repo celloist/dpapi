@@ -1,11 +1,13 @@
 import { success, notFound } from '../../services/response/'
 import { Seller } from '.'
 
-export const create = ({ bodymen: { body } }, res, next) =>
+export const create = ({ bodymen: { body } }, res, next) =>{
+  console.log(body);
   Seller.create(body)
     .then((seller) => seller.view(true))
     .then(success(res, 201))
     .catch(next)
+}
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Seller.find(query, select, cursor)

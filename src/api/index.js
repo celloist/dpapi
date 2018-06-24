@@ -7,6 +7,7 @@ import tag from './tag'
 import invoice from './invoice'
 import seller from './seller'
 import enums from './enums'
+import order from './order'
 
 const router = new Router()
 
@@ -41,5 +42,6 @@ router.use('/tags', tag)
 router.use('/invoices', invoice)
 router.use('/sellers', seller)
 router.use('/enums', enums)
+router.use('/orders', order)
 
 export default router

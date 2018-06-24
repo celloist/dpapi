@@ -7,7 +7,7 @@ import { schema } from './model'
 export Seller, { schema } from './model'
 
 const router = new Router()
-const { email, name, address, platform, storeId, categories, communication } = schema.tree
+const { email, name, address, communication, platform, storeId, categories } = schema.tree
 
 /**
  * @api {post} /sellers Create seller
@@ -29,7 +29,7 @@ const { email, name, address, platform, storeId, categories, communication } = s
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ email, name, address, platform, storeId, categories, communication }),
+  body({ email, name, address:[Object], platform, storeId, categories, communication: [Object] }),
   create)
 
 /**
@@ -83,7 +83,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ email, name, address, platform, storeId, categories, communication }),
+  body({ email, name, address:[Object], platform, storeId, categories, communication: [Object] }),
   update)
 
 /**

@@ -16,33 +16,25 @@ const sellerSchema = new Schema({
   location: String,
   platform: {
     type: String,
-    enum: ['AliExpress', 'DHGate', 'AliBaba']
   },
   storeId: {
     type: String,
     required: true
   },
-  category: [{
-    type: Schema.Types.ObjectId, ref: 'Category'
+  categories: [{
+    type: String
   }],
-  communication: {
-    method: [{
-      type: String,
-      enum: ['WhatsApp', 'WeChat', 'Telegram', 'Email'],
-      required: true
+  communication: [{
+      method: {type: String, required: true},
+      contactName:{type: String, required: true},
+      contactInfo:{type: String, required: true}
     }],
-    preferred: {
-      type: String,
-      enum: ['WhatsApp', 'WeChat', 'Telegram', 'Email'],
-      required: true
-    }
-  },
   address: {
     street: String,
     number: String,
-    postalCode: String,
-    Province: String,
-    Country: String
+    zip: String,
+    province: String,
+    country: String
   }
 }, {
   timestamps: true,
@@ -63,15 +55,16 @@ sellerSchema.methods = {
       platform: this.platform,
       storeId: this.storeId,
       categories: this.categories,
-      communication: this.communcation,
+      communication: this.communication,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
-
+    console.log(view);
     return full ? {
       ...view
       // add properties for a full view
     } : view
+
   }
 }
 
