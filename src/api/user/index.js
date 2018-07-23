@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create,createUser, update, updatePassword, destroy } from './controller'
+import {index, showMe, show, create, createUser, update, updatePassword, destroy, fullIndex} from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -24,6 +24,11 @@ router.get('/',
   token({ required: true, roles: ['admin'] }),
   query(),
   index)
+
+router.get('/full',
+  token({ required: true, roles: ['admin'] }),
+  query(),
+  fullIndex)
 
 /**
  * @api {get} /users/me Retrieve current user

@@ -5,20 +5,41 @@ const invoiceSchema = new Schema({
   invoiceId: {
     type: Number
   },
-  userInfo: {
-    type: Schema.ObjectId,
-    ref: 'User',
-    required: true
+  user: {
+    id: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    email:{
+      type: String,
+      required: true
+    }
   },
   orderId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Order',
+    type: Number,
     required: true
   },
   products: [{
-    productId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Product'
+    id: {
+      type: Number,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    amount: {
+      type: Number,
+      required: true
     }
   }],
   vat: {
@@ -38,13 +59,12 @@ const invoiceSchema = new Schema({
     }
   },
   paymentInfo: {
-    Id: Number,
-    Method: {
+    method: {
       type: String,
       enum: ['Ideal', 'Paypal', 'BankTransfer'],
       required: true
     },
-    Reference: {
+    referenceId: {
       type: String,
       required: true
     },
@@ -70,10 +90,9 @@ invoiceSchema.methods = {
   view (full) {
     const view = {
       // simple view
-      id: this.id,
-      userInfo: this.userInfo.invoiceView(full),
-      invoiceId: this.invoiceId,
       orderId: this.orderId,
+      user: this.user,
+      invoiceId: this.invoiceId,
       products: this.products,
       vat: this.vat,
       shippingPrice: this.shippingPrice,
@@ -84,7 +103,7 @@ invoiceSchema.methods = {
     }
 
     return full ? {
-      ...view
+      id: this.id, ...view
       // add properties for a full view
     } : view
   }
@@ -93,7 +112,7 @@ invoiceSchema.methods = {
 invoiceSchema.plugin(autoIncrement.plugin, {
   model: 'Invoice',
   field: 'invoiceId',
-  startAt: 1000,
+  startAt: 200500,
   incrementBy: 1
 })
 

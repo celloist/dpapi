@@ -8,6 +8,13 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const fullIndex = ({ querymen: { query, select, cursor }}, res, next) => {
+  User.find(query, select, cursor)
+    .then((users) => users.map((user) => user.view(true)))
+    .then(success(res))
+    .catch(next)
+}
+
 export const show = ({ params }, res, next) =>
   User.findById(params.id)
     .then(notFound(res))

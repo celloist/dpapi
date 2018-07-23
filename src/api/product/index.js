@@ -7,7 +7,7 @@ import { schema } from './model'
 export Product, { schema } from './model'
 
 const router = new Router()
-const { name, description, sellerPrice, shippingPrice, category, stock, timestamps } = schema.tree
+const { name, description, price, sellerPrice, shippingPrice, category, stock, timestamps } = schema.tree
 
 /**
  * @api {post} /products Create product
@@ -31,8 +31,8 @@ const { name, description, sellerPrice, shippingPrice, category, stock, timestam
  * @apiError 401 admin access only.
  */
 router.post('/',
-  token({ required: true, roles: ['admin'] }),
-   body({ name, description, sellerPrice, shippingPrice, category, stock, images:[Object], timestamps, sourceInfo:[Object] }),
+  //token({ required: true, roles: ['admin'] }),
+   body({ name, description, price, sellerPrice, shippingPrice, category, stock, images:[Object], timestamps, sourceInfo:[Object] }),
   create
 )
 
@@ -82,7 +82,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ name, description, sellerPrice, shippingPrice, category, stock, images:[Object], timestamps, sourceInfo:[Object] }),
+  body({ name, description,price, sellerPrice, shippingPrice, category, stock, images:[Object], timestamps, sourceInfo:[Object] }),
   update)
 
 /**

@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose'
+import autoIncrement from "mongoose-auto-increment";
 
 const productSchema = new Schema({
+  productId: Number,
   name: {
     type: String,
     index: true
@@ -9,10 +11,12 @@ const productSchema = new Schema({
     type: String
   },
   price: {
-    type: Number
+    type: Number,
+    required: true
   },
   sellerPrice: {
-    type: Number
+    type: Number,
+    required: true
   },
   shippingPrice: {
     type: Number
@@ -44,19 +48,20 @@ const productSchema = new Schema({
   }
 }, {
   timestamps: true,
-  // toJSON: {
-  //   virtuals: true,
-  //   transform: (obj, ret) => { delete ret._id }
-  // }
+  toJSON: {
+    virtuals: true,
+    transform: (obj, ret) => { delete ret._id }
+  }
 })
 
 productSchema.methods = {
   view (full) {
     const view = {
       // simple view
-      id: this.id,
+      productId: this.productId,
       name: this.name,
       description: this.description,
+      price: this.price,
       sellerPrice: this.sellerPrice,
       shippingPrice: this.shippingPrice,
       category: this.category,
@@ -67,11 +72,18 @@ productSchema.methods = {
     }
 
     return full ? {
-      ...view
+      id: this.id,...view
       // add properties for a full view
     } : view
   }
 }
+
+invoiceSchema.plugin(autoIncrement.plugin, {
+  model: 'Product',
+  field: 'productId',
+  startAt: 100200,
+  incrementBy: 1
+})
 
 const model = mongoose.model('Product', productSchema)
 

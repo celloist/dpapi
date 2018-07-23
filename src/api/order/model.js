@@ -1,27 +1,53 @@
 import mongoose, { Schema } from 'mongoose'
+import autoIncrement from 'mongoose-auto-increment'
 
 const orderSchema = new Schema({
   orderId: {
-    type: String
+    type: Number,
+
   },
   user: {
-    type: String
+    id: {
+      type: Schema.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    email:{
+      type: String,
+      required: true
+    }
   },
-  products: {
-    type: String
-  },
+  products: [{
+    id: {
+      type: Schema.ObjectId,
+      ref: 'Product',
+      required: true
+    },
+    name: String,
+    price: Number,
+    amount: Number
+  }],
   vat: {
-    type: String
+    type: Number
   },
   shipping: {
-    type: String
+    name:{
+      type:String,
+      required: true
+    },
+    price:{
+      type:Number,
+      required: true
+    }
   },
   total: {
-    type: String
+    type: Number
   },
-  payed: {
-    type: String
-  }
+  payed: Boolean
 }, {
   timestamps: true,
   toJSON: {
@@ -34,7 +60,7 @@ orderSchema.methods = {
   view (full) {
     const view = {
       // simple view
-      id: this.id,
+      //id: this.id,
       orderId: this.orderId,
       user: this.user,
       products: this.products,
@@ -45,13 +71,20 @@ orderSchema.methods = {
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
-
+    console.log(view);
     return full ? {
-      ...view
-      // add properties for a full view
+      id: this.id,
+      ...view,
     } : view
   }
 }
+
+orderSchema.plugin(autoIncrement.plugin, {
+  model: 'Order',
+  field: 'orderId',
+  startAt: 105170,
+  incrementBy: 1
+})
 
 const model = mongoose.model('Order', orderSchema)
 

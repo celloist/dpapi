@@ -83,15 +83,34 @@
     "categories": ["test","test2"]
   },
   "user": {
-  "email": "somemail@mail.me",
-  "password": "test",
-  "name": "mc doe",
-  "address": {
-    "street": "streert",
-    "number": "23423d",
-    "zip": "sdfsdfsd",
-    "country": "Allahu Ackbarland"
-  }
+    "email": "somemail@mail.me",
+    "password": "test",
+    "name": "mc doe",
+    "address": {
+      "street": "street",
+      "number": "23423d",
+      "zip": "sdfsdfsd",
+      "country": "kapunkap"
+    }
+  },
+  "order": {
+    "user":{
+      "id":"5b4f9beccb23561da43d22e9",
+      "name":"fake"
+    },
+    "products":{
+      "id":"5b2aacbf97f4f959402b8d57",
+      "name":"test",
+      "price": 5,
+      "amount": 2
+    },
+    "vat":12,
+    "shipping":{
+      "name":"dhl",
+      "price": 34
+    },
+    "total":234,
+    "payed":true
   }
 }
 
